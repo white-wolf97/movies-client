@@ -34,7 +34,7 @@ export const LoginScreen = () => {
 		e.preventDefault();
 
 		if (validateForm()) {
-			fetch(process.env.REACT_APP_API_URL + '/api/v1/auth/login', {
+			fetch(process.env.REACT_APP_API_URL + '/auth/login', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({
@@ -44,7 +44,7 @@ export const LoginScreen = () => {
 				.then((res) => res.json())
 				.then((res) => {
 					if (res.status === 'success') {
-						dispatch(doLogin(email));
+						dispatch(doLogin(email, res.data.user));
 						setErrorMessage('');
 						return;
 					}
