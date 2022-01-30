@@ -1,0 +1,20 @@
+{
+  "name": "movies-client",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/white-wolf97/node-movies-client.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/white-wolf97/node-movies-client/issues"
+  },
+  "homepage": "https://github.com/white-wolf97/node-movies-client#readme"
+}
