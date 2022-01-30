@@ -1,11 +1,11 @@
 import { types } from "../types/types"
 
-export const doLogin = (email, name) => {
+export const doLogin = (email, name, token) => {
 	return (
 		{
 			type: types.login,
 			payload: {
-				email, name
+				email, name, token
 			}
 		}
 	)

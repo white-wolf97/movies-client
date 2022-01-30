@@ -3,7 +3,6 @@ import {
 	Switch,
 	Route,
 } from "react-router-dom";
-import { Navbar } from "../components/navbar/Navbar";
 import { PublicRoute } from "./PublicRoute";
 import { LoginScreen } from "../components/auth/LoginScreen";
 import { PrivateRoute } from "./PrivateRoute";

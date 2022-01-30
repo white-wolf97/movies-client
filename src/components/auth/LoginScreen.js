@@ -44,7 +44,7 @@ export const LoginScreen = () => {
 				.then((res) => res.json())
 				.then((res) => {
 					if (res.status === 'success') {
-						dispatch(doLogin(email, res.data.user));
+						dispatch(doLogin(email, res.data.user, res.data.token));
 						setErrorMessage('');
 						return;
 					}

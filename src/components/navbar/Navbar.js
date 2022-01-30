@@ -5,17 +5,34 @@ import { types } from '../../types/types'
 export const Navbar = () => {
 	const dispatch = useDispatch();
 	const [toLogin, setToLogin] = useState(false);
-	const { name } = useSelector((state) => state.auth);
+	const [toInternalServerError, setToInternalServerError] = useState(false);
+	const { name, token } = useSelector((state) => state.auth);
 
 	const handleLogout = () => {
-		dispatch({
-			type: types.logout,
-		});
-		setToLogin(true);
+		fetch(process.env.REACT_APP_API_URL + '/auth/logout', {
+			method: 'POST',
+			headers: { 'Authorization': 'Bearer ' + token, 'Content-Type': 'application/json' },
+		})
+			.then((res) => res.json())
+			.then((res) => {
+				if (res.status === 'success') {
+					setToLogin(true);
+					dispatch({
+						type: types.logout,
+					});
+				}
+				else {
+					setToInternalServerError(true);
+				}
+			})
+			.catch((err) => console.log(err))
 	};
 
 	if (toLogin === true) {
 		return <Redirect to="/login" />
+	}
+	if (toInternalServerError === true) {
+		return <Redirect to="/error" />
 	}
 	return (
 
