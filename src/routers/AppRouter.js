@@ -5,17 +5,15 @@ import {
 } from "react-router-dom";
 import { Navbar } from "../components/navbar/Navbar";
 import { PublicRoute } from "./PublicRoute";
-import { LoginScreen } from "../components/login/LoginScreen";
-import { FavoritesScreen } from "../components/favorites/FavoritesScreen";
-import { MoviesScreen } from "../components/movies/MoviesScreen";
+import { LoginScreen } from "../components/auth/LoginScreen";
 import { PrivateRoute } from "./PrivateRoute";
+import { DashboardRoutes } from './DashboardRoutes';
+import { RegisterScreen } from "../components/auth/RegisterScreen";
 
 export const AppRouter = () => {
 	return (
 		<Router>
 			<div>
-				<Navbar />
-
 				<Switch>
 
 					<Route path="/login">
@@ -24,17 +22,18 @@ export const AppRouter = () => {
 						</PublicRoute>
 					</Route>
 
-					<Route path="/favorites">
+					<Route path="/register">
+						<PublicRoute>
+							<RegisterScreen />
+						</PublicRoute>
+					</Route>
+
+					<Route path="/*">
 						<PrivateRoute>
-							<FavoritesScreen />
+							<DashboardRoutes />
 						</PrivateRoute>
 					</Route>
 
-					<Route path="/">
-						<PrivateRoute>
-							<MoviesScreen />
-						</PrivateRoute>
-					</Route>
 				</Switch>
 			</div>
 		</Router>

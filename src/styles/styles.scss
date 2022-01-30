@@ -1,2 +1,3 @@
-@use "./base/settings";
-@use "./base/base";
+@import "./base/_settings";
+@import "./base/_base";
+@import "./components/_auth";
