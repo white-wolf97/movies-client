@@ -4,6 +4,7 @@ import storage from 'redux-persist/lib/storage'
 import thunk from 'redux-thunk';
 import { authReducer } from '../reducers/authReducer';
 import { uiReducer } from '../reducers/uiReducer';
+import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2'
 
 const composeEnhancers =
 	(typeof window !== 'undefined' &&
@@ -18,6 +19,7 @@ const reducers = combineReducers({
 const persistConfig = {
 	key: 'root',
 	storage,
+	stateReconciler: autoMergeLevel2
 }
 
 const persistedReducer = persistReducer(persistConfig, reducers);

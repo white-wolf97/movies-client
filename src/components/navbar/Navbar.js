@@ -58,7 +58,7 @@ export const Navbar = () => {
 
 					<button onClick={handleLogout} className="nav-item nav-link btn">
 						<div>
-							<i class="fas fa-sign-out-alt navbar__icon"></i>
+							<i className="fas fa-sign-out-alt navbar__icon"></i>
 							Logout
 						</div>
 					</button>
