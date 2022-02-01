@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, NavLink, Redirect } from 'react-router-dom';
+import { Link, NavLink, Redirect, useHistory } from 'react-router-dom';
 import { types } from '../../types/types'
 export const Navbar = () => {
 	const dispatch = useDispatch();
-	const [toLogin, setToLogin] = useState(false);
-	const [toInternalServerError, setToInternalServerError] = useState(false);
+	const history = useHistory();
+	// const [toLogin, setToLogin] = useState(false);
+	// const [toInternalServerError, setToInternalServerError] = useState(false);
 	const { name, token } = useSelector((state) => state.auth);
 
 	const handleLogout = () => {
@@ -16,24 +17,25 @@ export const Navbar = () => {
 			.then((res) => res.json())
 			.then((res) => {
 				if (res.status === 'success') {
-					setToLogin(true);
 					dispatch({
 						type: types.logout,
 					});
+					history.push('/login');
 				}
 				else {
-					setToInternalServerError(true);
+					history.push('/error');
+					// setToInternalServerError(true);
 				}
 			})
 			.catch((err) => console.log(err))
 	};
 
-	if (toLogin === true) {
-		return <Redirect to="/login" />
-	}
-	if (toInternalServerError === true) {
-		return <Redirect to="/error" />
-	}
+	// if (toLogin === true) {
+	// 	return <Redirect to="/login" />
+	// }
+	// // if (toInternalServerError === true) {
+	// return <Redirect to="/error" />
+	// }
 	return (
 
 		<nav className="navbar navbar-expand-sm navbar-dark bg-black navbar__nav">
